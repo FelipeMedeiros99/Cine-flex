@@ -12,6 +12,10 @@ import './assets/reset.css'
 import './assets/style.css'
 
 
+//  <Link to='/'>
+//  useParams(): pega elemento do link :elemento
+
+
 const App = () => {
     return (
         <>  
@@ -19,9 +23,9 @@ const App = () => {
                 <Cabecalho />
                 <Routes>
                     <Route path="/" element={<MenuDeFilmes />} />
-                    <Route path="/horarios" element={<MenuDeHorarios/>}/>
-                    <Route path="/cadeiras" element={< MenuDeCadeiras/>}/>
-                    <Route path="/pedido" element={<MenuDePedidoConcluido/>} /> 
+                    <Route path="/filme/:id" element={<MenuDeHorarios/>}/>
+                    <Route path="/sessao/:id" element={< MenuDeCadeiras/>}/>
+                    <Route path="/sucesso" element={<MenuDePedidoConcluido/>} /> 
                 </Routes> 
             </BrowserRouter>
 
