@@ -20,9 +20,9 @@ const App = () => {
     const [listaFilmes, setListaFilmes] = useState([])
     const [filmeSelecionado, setFilmeSelecionado] = useState([])
     const [sessaoSelecionada, setSessaoSelecionada] = useState({})
+    const [informacoesDaCompra, setInformacoesDaCompra] = useState({})
+    const [dadosComprador, setDadosComprador] = useState({})
 
-    console.log('filme: ', filmeSelecionado)
-    console.log('sessao:', sessaoSelecionada)
 
     return (
         <>
@@ -48,10 +48,14 @@ const App = () => {
                     />
 
 
-                    <Route path="/sessao/:id" 
+                    <Route path="/sessao/:idHorario" 
                         element={< MenuDeCadeiras 
                             filmeSelecionado={filmeSelecionado}
                             sessaoSelecionada={sessaoSelecionada}
+                            dadosComprador={dadosComprador}
+                            setDadosComprador={setDadosComprador}
+                            informacoesDaCompra={informacoesDaCompra}
+                            setInformacoesDaCompra={setInformacoesDaCompra}
                             />} 
                     />
                     <Route path="/sucesso" element={<MenuDePedidoConcluido />} />

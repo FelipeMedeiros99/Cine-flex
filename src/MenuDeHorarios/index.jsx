@@ -20,7 +20,7 @@ const MenuDeHorarios = (props) => {
 
     const abrirLink = (disponibilidade, horario) => {
         navigate(`/sessao/${horario.id}`)
-        setSessaoSelecionada({ horario: horario.name, dia: disponibilidade.weekday })
+        setSessaoSelecionada({ horario: horario.name, dia: disponibilidade.weekday})
     }
 
     useEffect(() => {

@@ -27,3 +27,7 @@ h2{
 p{
     font-family: "Roboto Condensed", sans-serif;
 }
+
+button:hover{
+    cursor: pointer;
+}
