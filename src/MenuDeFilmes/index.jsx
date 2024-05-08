@@ -5,25 +5,25 @@ import styled from 'styled-components'
 
 
 const MenuDeFilmes = (props) =>{
-
-    const [listaFilmes, setListaFilmes] = useState([])
-
-    console.log(listaFilmes)
+    const {
+        listaFilmes,
+        setListaFilmes,
+    } = props
 
     useEffect(()=>{
         const promisse = axios.get('https://mock-api.driven.com.br/api/v5/cineflex/movies')
         promisse.then((data)=>setListaFilmes(data.data))
-        promisse.catch((data)=>console.log(data))
+        promisse.catch((data)=>console.log(data.response))
 
     }, [])
 
 
     return(
         <ListaDeFilmes>
-            <p>Selecione o filme</p>
+            <h2>Selecione o filme</h2>
             <div className="filmes">
                 {listaFilmes.map((dadosFilme, index)=>(
-                    <Link to={`/horarios:${dadosFilme.id}`} >
+                    <Link key={index} to={`/filme/${dadosFilme.id}`}>
                         <img src={dadosFilme.posterURL} alt={dadosFilme.title} />
                     </Link>
                 ))}        
@@ -38,14 +38,6 @@ const ListaDeFilmes = styled.div`
     flex-direction: column;
     width: 375px;
     align-items: center;
-
-    p{  
-        padding: 58px;
-        font-size: 34px;
-        color: #293845;
-        font-weight: 400;
-        font-family: "Roboto Condensed", sans-serif;
-    }
 
     img{
         width: 129px;
