@@ -6,11 +6,10 @@ import MenuDeFilmes from './MenuDeFilmes'
 import MenuDeHorarios from './MenuDeHorarios'
 import MenuDeCadeiras from "./MenuDeCadeiras";
 import MenuDePedidoConcluido from './MenuDePedidoConcluido'
-import Rodape from "./Rodape"
 
 import './assets/reset.css'
 import './assets/style.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 //  <Link to='/'>
@@ -19,9 +18,11 @@ import { useState } from "react";
 
 const App = () => {
     const [listaFilmes, setListaFilmes] = useState([])
-    const [filmeSelecionado, setfilmeSelecionado] = useState([])
+    const [filmeSelecionado, setFilmeSelecionado] = useState([])
+    const [sessaoSelecionada, setSessaoSelecionada] = useState({})
 
-
+    console.log('filme: ', filmeSelecionado)
+    console.log('sessao:', sessaoSelecionada)
 
     return (
         <>
@@ -30,6 +31,8 @@ const App = () => {
                 <Routes>
                     <Route path="/"
                         element={<MenuDeFilmes
+                            setSessaoSelecionada={setSessaoSelecionada}
+                            setFilmeSelecionado={setFilmeSelecionado}
                             listaFilmes={listaFilmes}
                             setListaFilmes={setListaFilmes}
                         />}
@@ -38,18 +41,21 @@ const App = () => {
                     <Route path={`/filme/:idDoFilme`}
                         element={<MenuDeHorarios
                             filmeSelecionado={filmeSelecionado}
-                            setfilmeSelecionado={setfilmeSelecionado}
+                            setFilmeSelecionado={setFilmeSelecionado}
+                            setSessaoSelecionada={setSessaoSelecionada}
+                            sessaoSelecionada={sessaoSelecionada}
                         />}
                     />
 
 
-                    <Route path="/sessao/:id" element={< MenuDeCadeiras />} />
+                    <Route path="/sessao/:id" 
+                        element={< MenuDeCadeiras 
+                            filmeSelecionado={filmeSelecionado}
+                            sessaoSelecionada={sessaoSelecionada}
+                            />} 
+                    />
                     <Route path="/sucesso" element={<MenuDePedidoConcluido />} />
                 </Routes>
-
-                <Rodape
-                    filmeSelecionado={filmeSelecionado}
-                />
             </BrowserRouter>
 
 

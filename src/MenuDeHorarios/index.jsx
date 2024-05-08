@@ -3,29 +3,33 @@ import { useEffect, useState } from "react"
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import styled from "styled-components"
 
+import Rodape from './../Rodape'
+
 
 const MenuDeHorarios = (props) =>{
     const {
         filmeSelecionado,
-        setfilmeSelecionado
+        setFilmeSelecionado, 
+        setSessaoSelecionada,
+        sessaoSelecionada
     } = props
 
     const {idDoFilme} = useParams()
 
     const navigate = useNavigate()
 
-    const abrirLink = (horario)=>{
+    const abrirLink = (disponibilidade, horario)=>{
         navigate(`/sessao/${horario.id}`)
+        setSessaoSelecionada({horario: horario.name, dia: disponibilidade.weekday})
     }
-
-    console.log(filmeSelecionado)
-
 
     useEffect(()=>{
         axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idDoFilme}/showtimes`)
-        .then((data)=>setfilmeSelecionado(data.data))
+        .then((data)=>setFilmeSelecionado(data.data))
         .catch((data)=>console.log(data.response))
     }, [idDoFilme])
+
+
 
     return(
         <Disponibilidade>
@@ -36,18 +40,23 @@ const MenuDeHorarios = (props) =>{
                             <p>{disponibilidade.weekday} - {disponibilidade.date}</p>  
                             <div className="horarios-do-dia">
                                 {disponibilidade.showtimes.map((horario, index2)=>(                                  
-                                    <button key={index2} type="submit" onClick={()=>abrirLink(horario)}>
+                                    <button key={index2} type="submit" onClick={()=>abrirLink(disponibilidade, horario)}>
                                         {horario.name}
                                     </button> 
                                 ))}
                             </div>
                         </div>
                     
-
-
+                    
                     ))
                     :<></>
                 }
+
+
+                <Rodape
+                    filmeSelecionado={filmeSelecionado}
+                    sessaoSelecionada={sessaoSelecionada}
+                />
         </Disponibilidade>
     )
 } 
