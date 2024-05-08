@@ -22,7 +22,14 @@ const App = () => {
     const [sessaoSelecionada, setSessaoSelecionada] = useState({})
     const [informacoesDaCompra, setInformacoesDaCompra] = useState({})
     const [dadosComprador, setDadosComprador] = useState({nome:'', cpf:""})
+    const [cadeirasSelecionadas, setCadeirasSelecionadas] = useState([])
 
+    console.log('filme selecionado: ', filmeSelecionado)
+    console.log('sessao selecionada: ', sessaoSelecionada)
+    console.log('informacoes da compra: ', informacoesDaCompra)
+    console.log('dados comprador: ', dadosComprador)
+    console.log('cadeiras: ', cadeirasSelecionadas)
+    console.log("_____________________________________________________")
 
     return (
         <>
@@ -56,9 +63,18 @@ const App = () => {
                             setDadosComprador={setDadosComprador}
                             informacoesDaCompra={informacoesDaCompra}
                             setInformacoesDaCompra={setInformacoesDaCompra}
+                            cadeirasSelecionadas={cadeirasSelecionadas}
+                            setCadeirasSelecionadas={setCadeirasSelecionadas}
                             />} 
                     />
-                    <Route path="/sucesso" element={<MenuDePedidoConcluido />} />
+                    <Route path="/sucesso" 
+                        element={<MenuDePedidoConcluido 
+                            informacoesDaCompra={informacoesDaCompra}    
+                            cadeirasSelecionadas={cadeirasSelecionadas}
+                            dadosComprador={dadosComprador}
+                            
+                        />} 
+                    />
                 </Routes>
             </BrowserRouter>
 

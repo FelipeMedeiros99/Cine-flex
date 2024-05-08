@@ -14,10 +14,10 @@ const MenuDeCadeiras = (props) => {
         dadosComprador,
         setDadosComprador,
         informacoesDaCompra,
-        setInformacoesDaCompra
+        setInformacoesDaCompra,
+        cadeirasSelecionadas,
+        setCadeirasSelecionadas
     } = props
-
-    const [cadeirasSelecionadas, setCadeirasSelecionadas] = useState([])
 
     const idHorario = useParams().idHorario
 
@@ -26,8 +26,6 @@ const MenuDeCadeiras = (props) => {
         .then((data) =>setInformacoesDaCompra(data.data))
         .catch((data)=> console.log(data))
     }, [])
-
-    console.log('sessão selecionada:', sessaoSelecionada)
 
     return (
         
@@ -47,17 +45,19 @@ const MenuDeCadeiras = (props) => {
                                 'livre'
                             }
                             onClick={()=>{
-                                const copiaCadeiras = [...cadeirasSelecionadas]
-                                const posicaoElemento = copiaCadeiras.indexOf(index)
-                                if(!!(posicaoElemento===-1)){
-                                    setCadeirasSelecionadas([...copiaCadeiras, index])
-                                }else{
-                                    copiaCadeiras.splice(posicaoElemento, 1)
-                                    setCadeirasSelecionadas(copiaCadeiras)
+                                if(cadeira.isAvailable){
+                                    let copiaCadeiras = [...cadeirasSelecionadas]
+                                    let posicaoElemento = copiaCadeiras.indexOf(index)
+                                    if(posicaoElemento===-1){
+                                        setCadeirasSelecionadas([...copiaCadeiras, index])
+                                    }else{
+                                        copiaCadeiras.splice(posicaoElemento, 1)
+                                        setCadeirasSelecionadas(copiaCadeiras)
+                                    }
                                 }
                             }}>
+                            
                             {cadeira.name.length>1?cadeira.name:`0${cadeira.name}`}
-                        
                         </button>
                     )):<></>}
 
@@ -82,9 +82,11 @@ const MenuDeCadeiras = (props) => {
                 <Form onSubmit={(event) => {
                     event.preventDefault()
                     const infoCompra = {ids: [...cadeirasSelecionadas], name:dadosComprador.nome, cpf: dadosComprador.cpf}
-                    axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, infoCompra)
-                    .then((data)=>console.log(data))
-                    // navigate('/sucesso')
+                    if(cadeirasSelecionadas.length>0){
+                        axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, infoCompra)
+                        .then((data)=>navigate('/sucesso'))
+                        .catch((data)=>console.log(data))
+                    }
 
                 }}>
                     <label htmlFor="nome">Nome do comprador:</label>
