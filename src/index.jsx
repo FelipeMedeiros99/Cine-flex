@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useEffect, useState } from "react";
 
 import Cabecalho from "./Cabecalho";
 import MenuDeFilmes from './MenuDeFilmes'
@@ -9,7 +10,6 @@ import MenuDePedidoConcluido from './MenuDePedidoConcluido'
 
 import './assets/reset.css'
 import './assets/style.css'
-import { useEffect, useState } from "react";
 
 
 //  <Link to='/'>
@@ -24,6 +24,7 @@ const App = () => {
     const [dadosComprador, setDadosComprador] = useState({nome:'', cpf:""})
     const [cadeirasSelecionadas, setCadeirasSelecionadas] = useState([])
 
+
     console.log('filme selecionado: ', filmeSelecionado)
     console.log('sessao selecionada: ', sessaoSelecionada)
     console.log('informacoes da compra: ', informacoesDaCompra)
@@ -31,10 +32,15 @@ const App = () => {
     console.log('cadeiras: ', cadeirasSelecionadas)
     console.log("_____________________________________________________")
 
+    useEffect(()=>{
+        console.log(filmeSelecionado.length)
+    }, [])
+
     return (
         <>
             <BrowserRouter>
                 <Cabecalho />
+
                 <Routes>
                     <Route path="/"
                         element={<MenuDeFilmes
@@ -75,6 +81,7 @@ const App = () => {
                             
                         />} 
                     />
+                
                 </Routes>
             </BrowserRouter>
 

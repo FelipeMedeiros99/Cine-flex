@@ -27,6 +27,13 @@ const MenuDeCadeiras = (props) => {
         .catch((data)=> console.log(data))
     }, [])
 
+    useEffect(()=>{
+        if (filmeSelecionado.length===0 || sessaoSelecionada.length===0){
+            navigate('/')
+        }
+    }, [filmeSelecionado, sessaoSelecionada])
+
+
     return (
         
         <>
@@ -55,7 +62,9 @@ const MenuDeCadeiras = (props) => {
                                         setCadeirasSelecionadas(copiaCadeiras)
                                     }
                                 }
-                            }}>
+                            }}
+                            key={index}
+                            >
                             
                             {cadeira.name.length>1?cadeira.name:`0${cadeira.name}`}
                         </button>
