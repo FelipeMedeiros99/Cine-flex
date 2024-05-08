@@ -47,12 +47,13 @@ const MenuDePedidoConcluido = (props) =>{
             
             <div className="container-botao">
                 <button onClick={()=> {
+                    navigate('/')
                     setFilmeSelecionado([])
                     setDadosComprador({nome:"", cpf:""})
                     setCadeirasSelecionadas([])
                     setSessaoSelecionada({})
                     setInformacoesDaCompra({})
-                    navigate('/')}}>Voltar para home</button>
+                    }}>Voltar para home</button>
             </div>
         </PedidoConcluido>
     )
