@@ -9,6 +9,7 @@ const Cabecalho = () =>{
 export default Cabecalho
 
 const H1 = styled.h1`
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
