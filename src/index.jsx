@@ -78,7 +78,10 @@ const App = () => {
                             informacoesDaCompra={informacoesDaCompra}    
                             cadeirasSelecionadas={cadeirasSelecionadas}
                             dadosComprador={dadosComprador}
-                            
+                            setFilmeSelecionado={setFilmeSelecionado}
+                            setDadosComprador={setDadosComprador}
+                            setCadeirasSelecionadas={setCadeirasSelecionadas}
+                            setSessaoSelecionada={setSessaoSelecionada}
                         />} 
                     />
                 

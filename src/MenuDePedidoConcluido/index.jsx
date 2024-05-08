@@ -6,7 +6,12 @@ const MenuDePedidoConcluido = (props) =>{
     const {
         informacoesDaCompra,
         cadeirasSelecionadas,
-        dadosComprador
+        dadosComprador,
+        setFilmeSelecionado,
+        setDadosComprador,
+        setCadeirasSelecionadas,
+        setSessaoSelecionada, 
+        setInformacoesDaCompra
     } = props
 
     const navigate = useNavigate()
@@ -41,7 +46,13 @@ const MenuDePedidoConcluido = (props) =>{
             </div>
             
             <div className="container-botao">
-                <button onClick={()=> navigate('/')}>Voltar para home</button>
+                <button onClick={()=> {
+                    setFilmeSelecionado([])
+                    setDadosComprador({nome:"", cpf:""})
+                    setCadeirasSelecionadas([])
+                    setSessaoSelecionada({})
+                    setInformacoesDaCompra({})
+                    navigate('/')}}>Voltar para home</button>
             </div>
         </PedidoConcluido>
     )
