@@ -24,6 +24,7 @@ const MenuDeHorarios = (props) => {
     }
 
     useEffect(() => {
+        
         axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idDoFilme}/showtimes`)
             .then((data) => setFilmeSelecionado(data.data))
             .catch((data) => console.log(data.response))

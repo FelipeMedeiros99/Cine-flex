@@ -15,7 +15,6 @@ const MenuDeFilmes = (props) =>{
     useEffect(()=>{
         setSessaoSelecionada({})
         setFilmeSelecionado([])
-
         const promisse = axios.get('https://mock-api.driven.com.br/api/v5/cineflex/movies')
         promisse.then((data)=>setListaFilmes(data.data))
         promisse.catch((data)=>console.log(data.response))

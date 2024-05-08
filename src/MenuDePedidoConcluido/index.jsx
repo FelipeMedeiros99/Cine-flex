@@ -1,6 +1,6 @@
 const MenuDePedidoConcluido = (props) =>{
     return(
-        <>pedido</>
+        <>sucesso</>
     )
 } 
 

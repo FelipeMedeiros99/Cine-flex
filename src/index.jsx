@@ -21,7 +21,7 @@ const App = () => {
     const [filmeSelecionado, setFilmeSelecionado] = useState([])
     const [sessaoSelecionada, setSessaoSelecionada] = useState({})
     const [informacoesDaCompra, setInformacoesDaCompra] = useState({})
-    const [dadosComprador, setDadosComprador] = useState({})
+    const [dadosComprador, setDadosComprador] = useState({nome:'', cpf:""})
 
 
     return (

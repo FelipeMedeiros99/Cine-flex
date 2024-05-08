@@ -24,9 +24,14 @@ h2{
     font-family: "Roboto Condensed", sans-serif;
 }
 
-p{
+p, label{
     font-family: "Roboto Condensed", sans-serif;
 }
+
+button{
+    font-family: "Roboto Condensed", sans-serif;
+}
+
 
 button:hover{
     cursor: pointer;
